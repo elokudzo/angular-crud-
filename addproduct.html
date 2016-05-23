@@ -1,0 +1,64 @@
+<ion-view view-title="Add product">
+
+<ion-content has-subheader="false">
+
+
+<br>
+<center>
+   <ui-select ng-model="SelectedItems.category" theme="select2" ng-disabled="disabled" style="width: 90%;margin-top: 10px;" title="Choose a category">
+    <ui-select-match placeholder="Choose a category ...">{{$select.selected.CategoryName}}</ui-select-match>
+    <ui-select-choices repeat="cat in categories | propsFilter: {CategoryName: $select.search}">
+      <div ng-bind-html="cat.CategoryName | highlight: $select.search"></div>
+     
+    </ui-select-choices>
+  </ui-select>
+
+
+
+
+   <ui-select ng-model="SelectedItems.city" theme="select2" ng-disabled="disabled" style="width: 90%;margin-top: 10px;" title="Choose a city">
+    <ui-select-match placeholder="Choose a city ...">{{$select.selected.cityname}}</ui-select-match>
+    <ui-select-choices repeat="city in cities | propsFilter: {cityname: $select.search}">
+      <div ng-bind-html="city.cityname | highlight: $select.search"></div>
+     
+    </ui-select-choices>
+  </ui-select>
+
+
+
+<div class="list list-inset">
+
+  <label class="item item-input alumniForm">
+    <input type="text" placeholder="Name of product" ng-model="product.name">
+  </label>
+
+  <label class="item item-input alumniForm">
+    <textarea placeholder="Description" ng-model="product.description"></textarea>
+  </label>
+
+  <label class="item item-input alumniForm">
+     <input type="number" placeholder="Price" ng-model="product.Amount">
+  </label>
+
+  <!-- <ion-checkbox ng-model="product.Negotiable" class="alumniForm">Negotiable</ion-checkbox> -->
+
+<br>
+<button class="button button-small button-assertive" ng-click="addImage()" ng-show="images.length<4">
+  Add image
+</button>
+
+    <a class="item item-list-detail">
+      <ion-scroll direction="x">
+        <img ng-repeat="image in images" ng-src="{{image}}" ng-click="showImages($index)" class="image-list-thumb"/>
+      </ion-scroll>
+    </a>
+
+<button class="button button-block button-positive" ng-click="addProduct()" >
+  Add product
+</button>
+
+
+</div>
+</center>
+</ion-content>
+</ion-view>
